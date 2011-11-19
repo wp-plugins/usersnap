@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: With usersnap your users can give you a visual feedback of your page.
-Version: 0.5
+Version: 0.6
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '0.5');
+define('USERSNAP_VERSION', '0.6');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 if ( is_admin() ){ // admin actions
@@ -27,23 +27,25 @@ function us_add_js() {
 	if ($options['button-halign']==null) {
 		$options['button-halign'] = "right";
 	}
-	?>
-	<script type="text/javascript">
-		var _usersnapconfig = {
-			apiKey: '<?php echo $options['api-key']; ?>',
-			valign: '<?php echo $options['button-valign']; ?>',
-		    halign: '<?php echo $options['button-halign']; ?>'
-		}; 
-		(function() {
-		    var s = document.createElement('script');
-		    s.type = 'text/javascript';
-		    s.async = true;
-		    s.src = '//api.usersnap.com/usersnap.js';
-		    var x = document.getElementsByTagName('head')[0];
-		    x.appendChild(s);
-		})();
-	</script>
-	<?php
+	if ($options['api-key']!=="") {
+		?>
+		<script type="text/javascript">
+			var _usersnapconfig = {
+				apiKey: '<?php echo $options['api-key']; ?>',
+				valign: '<?php echo $options['button-valign']; ?>',
+			    halign: '<?php echo $options['button-halign']; ?>'
+			}; 
+			(function() {
+			    var s = document.createElement('script');
+			    s.type = 'text/javascript';
+			    s.async = true;
+			    s.src = '//api.usersnap.com/usersnap.js';
+			    var x = document.getElementsByTagName('head')[0];
+			    x.appendChild(s);
+			})();
+		</script>
+		<?php
+	}
 } 
 
 function us_plugin_menu() {
