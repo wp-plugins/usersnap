@@ -27,15 +27,15 @@ e.g.
 
 == Frequently Asked Questions ==
 
-= Where i get a usersnap api key. =
+= Where do I get a Usersnap API key? =
 
-Go to http://usersnap.com and register, after a few steps you will have an own api key.
+Go to http://usersnap.com and sign up, you can create your API keys for your site after you've logged in.
 
 
 == Screenshots ==
 
-1. This screenshot shows the final page with the feedback button. wp_step6.png
-2. This screnshot shows you the configuration page wp_step5.png
+1. This screenshot shows the final page with the feedback button. 
+2. This screenshot shows you the configuration page wp_step5.png
 
 == Changelog ==
 
