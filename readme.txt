@@ -39,6 +39,9 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 
 == Changelog ==
 
+= 0.51 =
+* minor adaption to the description
+
 = 0.5 =
 * First version.
 
