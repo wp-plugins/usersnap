@@ -4,7 +4,7 @@ Donate link: http://usersnap.com/
 Tags: feedback, visual feedback, bug tracking
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 0.6
+Stable tag: 0.7
 
 Usersnap is the most efficient Feedback Tool. 
 
