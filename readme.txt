@@ -38,6 +38,8 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 2. This screenshot shows you the configuration page wp_step5.png
 
 == Changelog ==
+= 0.7 =
+* changed some FAQs
 
 = 0.51 =
 * minor adaption to the description
