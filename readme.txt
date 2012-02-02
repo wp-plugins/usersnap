@@ -1,7 +1,7 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking, screenshots
+Tags: feedback, visual feedback, bug tracking, screenshots, image, images, plugin, comments
 Requires at least: 3.0
 Tested up to: 3.3.1
 Stable tag: 0.7.1
@@ -47,5 +47,3 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 = 0.5 =
 * First version.
 
-
-== Arbitrary section ==
