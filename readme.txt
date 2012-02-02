@@ -1,18 +1,17 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking
+Tags: feedback, visual feedback, bug tracking, screenshots
 Requires at least: 3.0
-Tested up to: 3.0
+Tested up to: 3.3.1
 Stable tag: 0.7
 
-Usersnap is the most efficient Feedback Tool. 
+Get screenshots directly form your readers, customers and users. Usersnap helps you to get visual feedback easily.
 
 == Description ==
 
-Get feedback directly from your users - including highlights of issues, blackened areas (personal information) and sticky notes.
-For further information, please check http://usersnap.com.
-
+Usersnap helps you to get feedback on your sites. You can create annotated screenshots without installing anything. A small snippet of code on the website creates a feedback button. Your users may highlight, blackout and use sticky notes to give visual feedback which is then sent to you!
+Usersnap is like the Google+ Feedback tool for your sites.
 
 == Installation ==
 
