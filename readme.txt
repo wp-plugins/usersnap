@@ -33,10 +33,11 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 
 == Screenshots ==
 
-1. This screenshot shows the final page with the feedback button. 
-2. This screenshot shows you the configuration page wp_step5.png
+1. This screenshot shows the admin page of the Usersnap plugin.
+
 
 == Changelog ==
+
 = 0.7 =
 * changed some FAQs
 
