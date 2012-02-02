@@ -21,8 +21,9 @@ e.g.
 
 1. Upload `usersnap.php` to the `/wp-content/plugins/usersnap` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Configure the plugin with the options panel (accessible via the admin menu)
-1. Now you will have a feedbackbutton on your wordpress page
+1. Get your free API key: http://www.usersnap.com
+1. Configure the plugin (accessible via the admin menu)
+1. Now you will have a feedback button on your wordpress page
 
 == Frequently Asked Questions ==
 
