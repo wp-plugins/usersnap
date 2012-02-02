@@ -15,10 +15,6 @@ Usersnap is like the Google+ Feedback tool for your sites.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload `usersnap.php` to the `/wp-content/plugins/usersnap` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Get your free API key: http://www.usersnap.com
