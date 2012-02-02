@@ -2,14 +2,14 @@
 /*
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
-Description: With usersnap your users can give you a visual feedback of your page.
-Version: 0.6
+Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
+Version: 0.7.1
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '0.6');
+define('USERSNAP_VERSION', '0.7.1');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 if ( is_admin() ){ // admin actions
