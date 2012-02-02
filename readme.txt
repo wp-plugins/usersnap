@@ -47,5 +47,3 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 = 0.5 =
 * First version.
 
-
-== Arbitrary section ==
