@@ -3,7 +3,7 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 0.7.1
+Version: 0.8
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
@@ -71,7 +71,6 @@ function usersnap_input_vbutton() {
 		$options['button-valign'] = "bottom";
 	}
 	?><select id="us-button-valign" name="usersnap_options[button-valign]">
-		<option value="top" <?php echo ($options['button-valign']=="top"?"selected":"")?>>top</option>
 		<option value="middle" <?php echo ($options['button-valign']=="middle"?"selected":"")?>>middle</option>
 		<option value="bottom" <?php echo ($options['button-valign']=="bottom"?"selected":"")?>>bottom</option>
 	</select><?php
