@@ -4,7 +4,7 @@ Donate link: http://usersnap.com/
 Tags: feedback, visual feedback, bug tracking, screenshots, image, images, plugin, comments
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 0.8
+Stable tag: 0.9
 
 Get screenshots directly form your readers, customers and users. Usersnap helps you to get visual feedback easily.
 
@@ -34,6 +34,9 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 
 
 == Changelog ==
+
+= 0.9 =
+* added language support to configuration page
 
 = 0.8 =
 * now only middle and bottom alignment for the usersnap button is available

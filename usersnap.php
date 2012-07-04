@@ -27,13 +27,17 @@ function us_add_js() {
 	if ($options['button-halign']==null) {
 		$options['button-halign'] = "right";
 	}
+	if ($options['lang']==null) {
+		$options['lang'] = "en";
+	}
 	if ($options['api-key']!=="") {
 		?>
 		<script type="text/javascript">
 			var _usersnapconfig = {
 				apiKey: '<?php echo $options['api-key']; ?>',
 				valign: '<?php echo $options['button-valign']; ?>',
-			    halign: '<?php echo $options['button-halign']; ?>'
+			    halign: '<?php echo $options['button-halign']; ?>',
+				lang: '<?php echo $options['lang']; ?>',
 			}; 
 			(function() {
 			    var s = document.createElement('script');
@@ -58,6 +62,7 @@ function us_register_settings() {
 	add_settings_field('us-api-key', 'API-Key', 'usersnap_input_text', 'usersnap', 'usersnap_main');
 	add_settings_field('us-button-valign', 'Button Vertical Alignment', 'usersnap_input_vbutton', 'usersnap', 'usersnap_main');
 	add_settings_field('us-button-halign', 'Button Horizontal Alignment', 'usersnap_input_hbutton', 'usersnap', 'usersnap_main');
+	add_settings_field('us-lang', 'Language', 'usersnap_input_lang', 'usersnap', 'usersnap_main');
 }
 
 function usersnap_input_text() {
@@ -84,6 +89,26 @@ function usersnap_input_hbutton() {
 	?><select id="us-button-halign" name="usersnap_options[button-halign]">
 		<option value="left" <?php echo ($options['button-halign']=="left"?"selected":"")?>>left</option>
 		<option value="right" <?php echo ($options['button-halign']=="right"?"selected":"")?>>right</option>
+	</select><?php
+}
+
+function usersnap_input_lang() {
+	$options = get_option('usersnap_options');
+	if ($options['lang']==null) {
+		$options['lang'] = "en";
+	}
+	?><select id="us-lang" name="usersnap_options[lang]">
+		<option value="en" <?php echo ($options['lang']=="en"?"selected":"")?>>English</option>
+		<option value="de" <?php echo ($options['lang']=="de"?"selected":"")?>>German</option>
+		<option value="fr" <?php echo ($options['lang']=="fr"?"selected":"")?>>French</option>
+		<option value="es" <?php echo ($options['lang']=="es"?"selected":"")?>>Spanish</option>
+		<option value="pl" <?php echo ($options['lang']=="pl"?"selected":"")?>>Polish</option>
+		<option value="fa" <?php echo ($options['lang']=="fa"?"selected":"")?>>Farsi</option>
+		<option value="it" <?php echo ($options['lang']=="it"?"selected":"")?>>Italian</option>
+		<option value="jp" <?php echo ($options['lang']=="jp"?"selected":"")?>>Japanese</option>
+		<option value="ko" <?php echo ($options['lang']=="ko"?"selected":"")?>>Korean</option>
+		<option value="hu" <?php echo ($options['lang']=="hu"?"selected":"")?>>Hungarian</option>
+		<option value="da" <?php echo ($options['lang']=="da"?"selected":"")?>>Danish</option>
 	</select><?php
 }
 
