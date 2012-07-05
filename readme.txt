@@ -36,7 +36,7 @@ Go to http://usersnap.com and sign up, you can create your API keys for your sit
 == Changelog ==
 
 = 0.9 =
-* added language support to configuration page
+* added language support to configuration page 
 
 = 0.8 =
 * now only middle and bottom alignment for the usersnap button is available
