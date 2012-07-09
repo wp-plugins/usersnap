@@ -3,7 +3,7 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 1.0
+Version: 1.1
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
@@ -127,7 +127,7 @@ function us_option_page() {
 	?>
 	<div class="wrap">
 	<form method="post" action="options.php">
-	<p><small>Optain an API-Key at <a href="http://www.usersnap.com" target="_blank">http://www.usersnap.com</a></small></p>
+	<p><small>Obtain an API-Key at <a href="http://www.usersnap.com" target="_blank">http://www.usersnap.com</a></small></p>
 	<?php settings_fields( 'usersnap_options' ); ?>
     <?php do_settings_sections('usersnap'); ?>
 	<p class="submit">
