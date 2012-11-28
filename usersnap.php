@@ -85,7 +85,7 @@ function us_add_js() {
 } 
 
 function us_plugin_menu() {
-	add_menu_page('Usersnap Settings', 'Usersnap', 'administrator', __FILE__, 'us_option_page' /*,plugins_url('/images/icon.png', __FILE__)*/);
+	add_menu_page('Usersnap Settings', 'Usersnap', 'administrator', __FILE__, 'us_option_page', plugins_url('/usersnap_16x16.png', __FILE__));
 }
 
 function us_register_settings() {
