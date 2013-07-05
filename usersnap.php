@@ -205,7 +205,7 @@ function usersnap_input_commentboxPlaceholder() {
 }
 
 function usersnap_section_tool() {
-	?><p>Specify the tools which want to be displayed. Three are allowed.<?php
+	?><p>Specify the tools which you want to be displayed. Three are allowed.<?php
 }
 
 function usersnap_input_tool0() {
@@ -259,6 +259,7 @@ function usersnap_options_validate($input) {
 	$t_black = 0;
 	$t_note = 0;
 	$t_pen = 0;
+    $t_arrow = 0;
 	//check tool2
 	$input["message"] = "";
 	$input["error"] = false;
@@ -267,7 +268,7 @@ function usersnap_options_validate($input) {
 			case "highlight":
 				if ($t_high > 0) {
 					$input["tool".$i] = "none";
-					$input["message"] .= "The highlight tool could only be used once<br/>";
+					$input["message"] .= "The highlight tool can only be used once.<br/>";
 					$input["error"] = true;
 				} else {
 					$t_high++;
@@ -276,7 +277,7 @@ function usersnap_options_validate($input) {
 			case "blackout":
 				if ($t_black > 0) {
 					$input["tool".$i] = "none";
-					$input["message"] .= "The blackout tool could only be used once<br/>";
+					$input["message"] .= "The blackout tool can only be used once.<br/>";
 					$input["error"] = true;
 				} else {
 					$t_black++;
@@ -286,7 +287,7 @@ function usersnap_options_validate($input) {
 			case "pen":
 				if ($t_pen > 0) {
 					$input["tool".$i] = "none";
-					$input["message"] .= "The pen tool could only be used once<br/>";
+					$input["message"] .= "The pen tool can only be used once.<br/>";
 					$input["error"] = true;
 				} else {
 					$t_pen++;
@@ -296,12 +297,22 @@ function usersnap_options_validate($input) {
 			case "note":
 				if ($t_note > 0) {
 					$input["tool".$i] = "none";
-					$input["message"] .= "The note tool could only be used once<br/>";
+					$input["message"] .= "The note tool can only be used once.<br/>";
 					$input["error"] = true;
 				} else {
 					$t_note++;
 				}
 				$t_note++;
+			break;
+			case "arrow":
+				if ($t_arrow > 0) {
+					$input["tool".$i] = "none";
+					$input["message"] .= "The arrow tool can only be used once.<br/>";
+					$input["error"] = true;
+				} else {
+					$t_arrow++;
+				}
+				$t_arrow++;
 			break;
 		}
 	}
