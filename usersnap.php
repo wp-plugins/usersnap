@@ -3,7 +3,7 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 1.8
+Version: 1.9
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
@@ -57,6 +57,9 @@ function us_add_js() {
 				if ($options['emailbox'] == "true") {
 				?>emailBox: true,<?php
 				}
+				if ($options['btntext'] != "") {
+				?>btnText: '<?php echo $options['btntext']; ?>',<?php
+				}
 				if ($options['emailboxph'] != "") {
 				?>emailBoxPlaceholder: '<?php echo $options['emailboxph']; ?>',<?php
 				}
@@ -66,10 +69,13 @@ function us_add_js() {
 				if ($options['commentbox'] == "true") {
 				?>commentBox: true,<?php
 				}
+				if ($options['shortcut'] == "true") {
+				?>shortcut: true,<?php
+				}
 				if ($options['commentboxph'] != "") {
 				?>commentBoxPlaceholder: '<?php echo $options['commentboxph']; ?>',<?php
 				}
-				?>lang: '<?php echo $options['lang']; ?>',
+				?>lang: '<?php echo $options['lang']; ?>'
 			}; 
 			(function() {
 			    var s = document.createElement('script');
@@ -95,6 +101,8 @@ function us_register_settings() {
 	add_settings_field('us-button-valign', 'Button Vertical Alignment', 'usersnap_input_vbutton', 'usersnap', 'usersnap_main');
 	add_settings_field('us-button-halign', 'Button Horizontal Alignment', 'usersnap_input_hbutton', 'usersnap', 'usersnap_main');
 	add_settings_field('us-lang', 'Language', 'usersnap_input_lang', 'usersnap', 'usersnap_main');
+	add_settings_field('us-btntext', 'Button Text', 'usersnap_input_btntext', 'usersnap', 'usersnap_main');
+	add_settings_field('us-shortcut', 'Shortcut', 'usersnap_input_shortcut', 'usersnap', 'usersnap_main');
 
 	add_settings_field('us-emailbox', 'Emailbox', 'usersnap_input_emailbox', 'usersnap', 'usersnap_main');
 	add_settings_field('us-emailboxph', 'Emailbox Placeholder', 'usersnap_input_emailboxPlaceholder', 'usersnap', 'usersnap_main');
@@ -112,6 +120,22 @@ function usersnap_input_text() {
 	$options = get_option('usersnap_options');
 	?><input id="us-api-key" style="width:250px;" name="usersnap_options[api-key]" size="40" type="text" value="<?php echo $options['api-key']; ?>" /><?php
 }
+
+function usersnap_input_btntext() {
+	$options = get_option('usersnap_options');
+	if ($options['btntext']==null) {
+		$options['btntext'] = "Feedback";
+	}
+	?><input id="us-btntext" style="width:250px;" name="usersnap_options[btntext]" size="40" type="text" value="<?php echo $options['btntext']; ?>" /><?php
+
+}
+
+function usersnap_input_shortcut() {
+	$options = get_option('usersnap_options');
+	?><input type="checkbox" id="us-shortcut" value="true" <?php echo ($options['shortcut']=="true"?"checked":"")?> name="usersnap_options[shortcut]"/>&nbsp;<label for="us-shortcut"><small>If you want that you can open Usersnap with Ctrl+U</small></label>
+		<?php
+}
+
 
 function usersnap_input_vbutton() {
 	$options = get_option('usersnap_options');
@@ -159,6 +183,8 @@ function usersnap_input_lang() {
 		<option value="nl" <?php echo ($options['lang']=="nl"?"selected":"")?>>Dutch</option>
 		<option value="fi" <?php echo ($options['lang']=="fi"?"selected":"")?>>Finnish</option>
 		<option value="pt" <?php echo ($options['lang']=="pt"?"selected":"")?>>Portuguese</option>
+		<option value="tr" <?php echo ($options['lang']=="pt"?"selected":"")?>>Turkish</option>
+		<option value="ru" <?php echo ($options['lang']=="pt"?"selected":"")?>>Russian</option>
 	</select><?php
 }
 
@@ -333,7 +359,7 @@ function us_option_page() {
 	}
 	?>
 	<form method="post" action="options.php">
-	<p><small>Optain an API-Key at <a href="http://www.usersnap.com" target="_blank">http://www.usersnap.com</a></small></p>
+	<p><small>Get your Usersnap API-Key at <a href="http://www.usersnap.com" target="_blank">http://www.usersnap.com</a></small></p>
 	<?php settings_fields( 'usersnap_options' ); ?>
     <?php do_settings_sections('usersnap'); ?>
 	<p class="submit">
