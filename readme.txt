@@ -1,7 +1,7 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking, screenshots, image, images, plugin, comments
+Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, comments, screenshots
 Requires at least: 3.0
 Tested up to: 3.3.1
 Stable tag: 1.10
