@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 1.11
+Version: 2.0
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '1.10');
+define('USERSNAP_VERSION', '2.0');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 if ( is_admin() ){ // admin actions
@@ -109,7 +109,13 @@ function us_add_js() {
 } 
 
 function us_plugin_menu() {
-	add_menu_page('Usersnap Settings', 'Usersnap', 'administrator', __FILE__, 'us_option_page', plugins_url('/usersnap_16x16.png', __FILE__));
+	$page = add_menu_page('Usersnap Settings', 'Usersnap', 'administrator', __FILE__, 'us_option_page', plugins_url('/usersnap_16x16.png', __FILE__));
+
+	add_action('admin_print_styles-'. $page, 'us_add_admin_styles');
+}
+
+function us_add_admin_styles() {
+	wp_enqueue_style('usersnapAdminStyle');
 }
 
 function us_register_settings() {
@@ -132,7 +138,77 @@ function us_register_settings() {
 	add_settings_field('us-tool0', 'First Tool', 'usersnap_input_tool0', 'usersnap', 'usersnap_tools');
 	add_settings_field('us-tool1', 'Second Tool', 'usersnap_input_tool1', 'usersnap', 'usersnap_tools');
 	add_settings_field('us-tool2', 'Third Tool', 'usersnap_input_tool2', 'usersnap', 'usersnap_tools');
+	
+	//page usersnap_pg_new
+	add_settings_section('usersnap_new', 'Create an Usersnap account', 'usersnap_section_new', 'usersnap_pg_new');
+	add_settings_field('us-user-email', 'Account email', 'usersnap_input_user_email', 'usersnap_pg_new', 'usersnap_new');
+	add_settings_field('us-user-url', 'Blog URL', 'usersnap_input_user_url', 'usersnap_pg_new', 'usersnap_new');
+	add_settings_field('us-user-pwd', 'Choose a new password', 'usersnap_input_user_pwd', 'usersnap_pg_new', 'usersnap_new');
+	add_settings_field('us-user-pwd2', 'Retype your password', 'usersnap_input_user_pwd2', 'usersnap_pg_new', 'usersnap_new');
+	
+
+	//add css
+	wp_register_style('usersnapAdminStyle', plugins_url('style.css', __FILE__));
 }
+
+//user - section
+
+function usersnap_input_user_email() {
+	$options = get_option('usersnap_options');
+	if (!isset($options['user-email']) || $options['user-email']=="") {
+		$options['user-email'] = get_bloginfo("admin_email");
+	}
+	?><input id="us-user-email" style="width:250px;" name="usersnap_options[user-email]" size="40" type="email" value="<?php echo $options['user-email']; ?>" /><?php
+}
+function usersnap_input_user_pwd() {
+	$options = get_option('usersnap_options');
+	?><input id="us-user-pwd" style="width:250px;" name="usersnap_options[user-pwd]" size="40" type="password" value="" /><?php
+}
+
+function usersnap_input_user_pwd2() {
+	$options = get_option('usersnap_options');
+	?><input id="us-user-pwd2" style="width:250px;" name="usersnap_options[user-pwd2]" size="40" type="password" value="" /><?php
+}
+
+function usersnap_input_user_url() {
+	$options = get_option('usersnap_options');
+	if (!isset($options['user-url']) || $options['user-url']=="") {
+		$options['user-url'] = get_bloginfo("url");
+	}
+	?><input id="us-user-url" style="width:250px;" name="usersnap_options[user-url]" size="40" type="text" value="<?php echo $options['user-url']; ?>" /><?php
+}
+
+//end of user section
+
+function usersnap_section_text() {
+	?>
+	<table class="form-table">
+		<tr>
+			<td>
+               <div class="us-box">Manage your API keys on <a href="https://usersnap.com/apikeys" target="_blank">http://usersnap.com/apikeys</a>.</div>  
+            </td>
+		</tr>
+	</table>
+	<?php
+}
+
+function usersnap_section_new() {
+	?>
+	<table class="form-table">
+		<tr>
+			<td>
+               <div class="us-box"><a href="https://usersnap.com/wordpress?gat=wpplugin" target="_blank">Usersnap</a> enables your readers to create annotated screenshots with browser and operating system specifics attached. Actionable feedback directly in your inbox!</div>
+               <div class="us-box">Screenshots of your WordPress site will help you improve your site and communicate with your readers. Promised.</div>  
+            </td>
+		</tr>
+	</table>
+	<?php
+}
+
+function usersnap_section_tool() {
+	?><p>Specify the tools which you want to be displayed. Three are allowed.<?php
+}
+
 
 function usersnap_input_text() {
 	$options = get_option('usersnap_options');
@@ -180,7 +256,7 @@ function usersnap_input_hbutton() {
 function usersnap_input_lang() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['lang']) || $options['lang']==null) {
-		$options['lang'] = "en";
+		$options['lang'] = substr(get_bloginfo("language"),0,2);
 	}
 	?><select id="us-lang" style="width:250px;" name="usersnap_options[lang]">
 		<option value="en" <?php echo ($options['lang']=="en"?"selected":"")?>>English</option>
@@ -248,10 +324,6 @@ function usersnap_input_commentboxPlaceholder() {
 	?><input type="text" style="width:250px;" value="<?php echo $options['commentboxph']; ?>" name="usersnap_options[commentboxph]"/><i>Optional</i><?php
 }
 
-function usersnap_section_tool() {
-	?><p>Specify the tools which you want to be displayed. Three are allowed.<?php
-}
-
 function usersnap_input_tool0() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['tool0']) || $options['tool0']==null) {
@@ -295,72 +367,153 @@ function usersnap_input_tool2() {
 }
 
 
-function usersnap_section_text() {
-}
+
 
 function usersnap_options_validate($input) {
-	$t_high = 0;
-	$t_black = 0;
-	$t_note = 0;
-	$t_pen = 0;
-    $t_arrow = 0;
-	//check tool2
 	$input["message"] = "";
 	$input["error"] = false;
-	for($i = 0; $i < 3; $i++) {
-		switch($input["tool".$i]) {
-			case "highlight":
-				if ($t_high > 0) {
-					$input["tool".$i] = "none";
-					$input["message"] .= "The highlight tool can only be used once.<br/>";
-					$input["error"] = true;
+	if (isset($_POST['us_btn_setup'])) {
+		//setup
+		$email = $input["user-email"];
+		$pwd = $input["user-pwd"];
+		$url = $input["user-url"];
+		$data = http_build_query( 
+			array('email' => $email,
+              'url' => $url,
+              'password' => $pwd,
+              'password2' => $pwd,
+              'gat' => 'wpplugin',
+		      'tos' => "true",
+              'securetoken' => "usersnap",
+              'package' => 'Pro',
+              'payment' => "oneyear")
+		);
+		
+		$opts = array(
+		    'http' => array(
+		        'Content-Type: text/html; charset=utf-8',
+		        'method' => "POST",
+		        'header' => "Accept-language: en\r\n" .
+		        'Content-length: '. strlen($data) . "\r\n",
+		        'content' => $data
+		     )
+		);
+		
+		$context = stream_context_create($opts);
+		$error = false;
+		$msg = "";
+		$fp = @fopen('https://usersnap.com/signup/signup_external', 'r', false, $context);
+		if (!$fp) {
+			$msg = "HTTP Error";
+			$error = true;
+		} else {
+			$resp = fread($fp, 1000);
+			$resp_obj = json_decode($resp);
+			$errorMsg = $resp_obj->{'error'};
+			if($errorMsg == null) {
+				$apikey = $resp_obj->{'apikey'};
+				if($apikey != "") {
+					//echo "Congratulations: Your API KEY is ".$apikey;
 				} else {
-					$t_high++;
+					$error = true;
+					$msg = "Could not create an API key! (".$errorMsg.")";
+					//var_dump($resp_obj);
 				}
-			break;
-			case "blackout":
-				if ($t_black > 0) {
-					$input["tool".$i] = "none";
-					$input["message"] .= "The blackout tool can only be used once.<br/>";
-					$input["error"] = true;
-				} else {
+			} else {
+				$error = true;
+				$msg = "Could not create an API key! (".$errorMsg.")";
+				//var_dump($resp_obj);
+			}
+			fclose($fp);
+		}
+		
+		if (!$error) {
+			//no error valid api key
+			$input["api-key"] = $apikey;
+		} else {
+			$input["message"] .= $msg."<br/>";
+			$input["error"] = true;
+		}
+		
+	} else {
+		//save
+		$t_high = 0;
+		$t_black = 0;
+		$t_note = 0;
+		$t_pen = 0;
+	    $t_arrow = 0;
+		//check tool2
+		for($i = 0; $i < 3; $i++) {
+			switch($input["tool".$i]) {
+				case "highlight":
+					if ($t_high > 0) {
+						$input["tool".$i] = "none";
+						$input["message"] .= "The highlight tool can only be used once.<br/>";
+						$input["error"] = true;
+					} else {
+						$t_high++;
+					}
+				break;
+				case "blackout":
+					if ($t_black > 0) {
+						$input["tool".$i] = "none";
+						$input["message"] .= "The blackout tool can only be used once.<br/>";
+						$input["error"] = true;
+					} else {
+						$t_black++;
+					}
 					$t_black++;
-				}
-				$t_black++;
-			break;
-			case "pen":
-				if ($t_pen > 0) {
-					$input["tool".$i] = "none";
-					$input["message"] .= "The pen tool can only be used once.<br/>";
-					$input["error"] = true;
-				} else {
+				break;
+				case "pen":
+					if ($t_pen > 0) {
+						$input["tool".$i] = "none";
+						$input["message"] .= "The pen tool can only be used once.<br/>";
+						$input["error"] = true;
+					} else {
+						$t_pen++;
+					}
 					$t_pen++;
-				}
-				$t_pen++;
-			break;
-			case "note":
-				if ($t_note > 0) {
-					$input["tool".$i] = "none";
-					$input["message"] .= "The note tool can only be used once.<br/>";
-					$input["error"] = true;
-				} else {
+				break;
+				case "note":
+					if ($t_note > 0) {
+						$input["tool".$i] = "none";
+						$input["message"] .= "The note tool can only be used once.<br/>";
+						$input["error"] = true;
+					} else {
+						$t_note++;
+					}
 					$t_note++;
-				}
-				$t_note++;
-			break;
-			case "arrow":
-				if ($t_arrow > 0) {
-					$input["tool".$i] = "none";
-					$input["message"] .= "The arrow tool can only be used once.<br/>";
-					$input["error"] = true;
-				} else {
+				break;
+				case "arrow":
+					if ($t_arrow > 0) {
+						$input["tool".$i] = "none";
+						$input["message"] .= "The arrow tool can only be used once.<br/>";
+						$input["error"] = true;
+					} else {
+						$t_arrow++;
+					}
 					$t_arrow++;
-				}
-				$t_arrow++;
-			break;
+				break;
+			}
 		}
 	}
 	return $input;
+}
+
+function us_option_tab_menu($current = "newusersnap", $tabs) {
+	?>	
+	<div id="icon-usersnap" class="icon32"><br></div>
+	<h2 class="nav-tab-wrapper">
+	<?php
+	foreach( $tabs as $tab => $name ){
+		$class = ( $tab == $current ) ? ' nav-tab-active' : '';
+		?>
+		<a class='nav-tab<?php echo $class; ?>' href='?page=usersnap/usersnap.php&tab=<?php echo $tab; ?>'><?php echo $name; ?></a>
+		<?php
+	}
+	?>
+   	</h2>
+   	<?php
 }
 
 
@@ -369,20 +522,85 @@ function us_option_page() {
 		wp_die( __('You do not have sufficient permissions to access this page.') );
 	}
 	$options = get_option('usersnap_options');
-	?>
-	<div class="wrap">
-	<?php
-	if ($options["error"] == true) {
-	?><p style="color: #FF0000;"><strong><?php echo $options["message"]; ?></strong></p><?php
+	$tabs = array();
+	if (strlen($options['api-key'])>0) {
+		$tabs = array(
+			'configure' => 'Configure'
+		);
+		$currenttab = "configure";
+		if ($_GET['tab'] == "newusersnap") {
+			$_GET['tab'] = $currenttab;
+		}
+	} else {
+		$tabs = array(
+			'newusersnap' => 'Setup Usersnap',
+			'configure' => 'Configure'
+		);
+		$currenttab = "newusersnap";
 	}
 	?>
-	<form method="post" action="options.php">
-	<p><small>Get your Usersnap API-Key at <a href="http://www.usersnap.com" target="_blank">http://www.usersnap.com</a></small></p>
+	<div class="wrap">
+
+	<?php
+	if (isset($_GET['tab'])) {
+		$currenttab = $_GET['tab'];
+	}
+	us_option_tab_menu($currenttab, $tabs);
+	
+	?>	
+	<?php
+	if ($options["error"] == true) {
+		?><p style="color: #FF0000;"><strong><?php echo $options["message"]; ?></strong></p><?php
+	}
+	?>
+	<form method="post" action="options.php" id="us-settings-form">
 	<?php settings_fields( 'usersnap_options' ); ?>
-    <?php do_settings_sections('usersnap'); ?>
-	<p class="submit">
-		<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-	</p>
+	<!--
+	<table class="form-table">
+		<tr>
+			<th>Tags with CSS classes</th>
+			<td>
+               <input id="ilc_tag_class" name="ilc_tag_class" type="checkbox" value="true" />
+               <label for="ilc_tag_class">Checking this will output each post tag with a specific CSS class based on its slug.</label>
+            </td>
+		</tr>
+	</table>
+	-->
+	<?php
+	switch($currenttab) {
+		case 'newusersnap':
+			do_settings_sections('usersnap_pg_new');
+			?>
+			<table class="form-table">
+				<tr>
+					<td>
+		               By clicking "Create Usersnap account" you agree to the <a href="https://usersnap.com/terms-of-service">Terms of Service</a> and <a href="https://usersnap.com/privacy-policy">Privacy Policy</a>.
+		            </td>
+				</tr>
+			</table>
+			<p class="submit">
+				<input type="submit" name="us_btn_setup" class="button-primary" value="<?php _e('Create Usersnap account') ?>" />
+			</p>
+			<script type="text/javascript">
+			jQuery('#us-settings-form').submit(function() {
+				if ((jQuery('#us-user-pwd').val()==='') || (jQuery('#us-user-pwd').val() !== jQuery('#us-user-pwd2').val())) {
+					alert('Your passwords are empty or not equal!');
+					return false;
+				}
+			});
+			</script>
+			<?php
+			break;
+		case 'configure':
+			do_settings_sections('usersnap');
+			?>
+			<p class="submit">
+				<input type="submit" name="us_btn_save" class="button-primary" value="<?php _e('Save Changes') ?>" />
+			</p>
+			<?php
+			break; 
+	}
+	?>
 	</form>
 	</div>
 	<?php
