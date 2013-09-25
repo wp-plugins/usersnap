@@ -4,7 +4,7 @@ Donate link: http://usersnap.com/
 Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 2.0
+Stable tag: 2.1
 
 Get screenshots directly form your readers, customers and users. Usersnap helps you to get visual feedback easily.
 
@@ -35,6 +35,9 @@ You can create and manage your API keys for your site after you've logged in.
 
 
 == Changelog ==
+
+= 2.1 = 
+* small hotfixes
 
 = 2.0 = 
 * setup a usersnap account directly in your wordpress

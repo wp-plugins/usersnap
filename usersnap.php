@@ -31,7 +31,7 @@ function us_add_js() {
 		$options['lang'] = "en";
 	}
 	if (!isset($options['emailbox'])) {
-		$options['emailbox'] = "false";
+		$options['emailbox'] = "true";
 	}
 	if (!isset($options['btntext'])) {
 		$options['btntext'] = "";
@@ -40,7 +40,7 @@ function us_add_js() {
 		$options['emailboxph'] = "";
 	}
 	if (!isset($options['commentbox'])) {
-		$options['commentbox'] = "false";
+		$options['commentbox'] = "true";
 	}
 	if (!isset($options['shortcut'])) {
 		$options['shortcut'] = "false";
@@ -49,10 +49,10 @@ function us_add_js() {
 		$options['commentboxph'] = "";
 	}
 	if (!isset($options['tool0']) || $options['tool0']==null) {
-		$options['tool0'] = "highlight";
+		$options['tool0'] = "pen";
 	}
 	if (!isset($options['tool1']) || $options['tool1']==null) {
-		$options['tool1'] = "blackout";
+		$options['tool1'] = "highlight";
 	}
 	if (!isset($options['tool2']) || $options['tool2']==null) {
 		$options['tool2'] = "note";
@@ -285,7 +285,7 @@ function usersnap_input_lang() {
 function usersnap_input_emailbox() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['emailbox']) || $options['emailbox']==null) {
-		$options['emailbox'] = "false";
+		$options['emailbox'] = "true";
 	}
 	?><input type="checkbox" value="true" <?php echo ($options['emailbox']=="true"?"checked":"")?> name="usersnap_options[emailbox]"/>
 		<?php
@@ -310,7 +310,7 @@ function usersnap_input_emailboxValue() {
 function usersnap_input_commentbox() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['commentbox']) || $options['commentbox']==null) {
-		$options['commentbox'] = "false";
+		$options['commentbox'] = "true";
 	}
 	?><input type="checkbox" value="true" <?php echo ($options['commentbox']=="true"?"checked":"")?> name="usersnap_options[commentbox]"/>
 		<?php
@@ -327,7 +327,7 @@ function usersnap_input_commentboxPlaceholder() {
 function usersnap_input_tool0() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['tool0']) || $options['tool0']==null) {
-		$options['tool0'] = "highlight";
+		$options['tool0'] = "pen";
 	}
 	?><select id="us-tool0" style="width:250px;" name="usersnap_options[tool0]">
 		<option value="highlight" <?php echo ($options['tool0']=="highlight"?"selected":"")?>>Highlight</option>
@@ -340,7 +340,7 @@ function usersnap_input_tool0() {
 function usersnap_input_tool1() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['tool1']) || $options['tool1']==null) {
-		$options['tool1'] = "blackout";
+		$options['tool1'] = "highlight";
 	}
 	?><select id="us-tool1" style="width:250px;" name="usersnap_options[tool1]">
 		<option value="none" <?php echo ($options['tool1']=="none"?"selected":"")?>>None</option>
@@ -528,7 +528,7 @@ function us_option_page() {
 			'configure' => 'Configure'
 		);
 		$currenttab = "configure";
-		if ($_GET['tab'] == "newusersnap") {
+		if (isset($_GET['tab']) && $_GET['tab'] == "newusersnap") {
 			$_GET['tab'] = $currenttab;
 		}
 	} else {
