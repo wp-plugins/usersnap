@@ -1,10 +1,10 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots
+Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 2.1
+Stable tag: 2.2
 
 Get screenshots directly form your readers, customers and users. Usersnap helps you to get visual feedback easily.
 
@@ -35,6 +35,9 @@ You can create and manage your API keys for your site after you've logged in.
 
 
 == Changelog ==
+
+= 2.2 = 
+* storing api key problem solved!
 
 = 2.1 = 
 * small hotfixes
