@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 2.0
+Version: 2.2
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '2.0');
+define('USERSNAP_VERSION', '2.2');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 if ( is_admin() ){ // admin actions
@@ -64,7 +64,7 @@ function us_add_js() {
 	if (!isset($options['tool2']) || $options['tool2'] != "none") {
 		$tools .= ",'".$options['tool2']."'";
 	}
-	if ($options['api-key']!=="") {
+	if (strlen($options['api-key'])>0) {
 		?>
 		<script type="text/javascript" data-cfasync="false">
 			var _usersnapconfig = {
@@ -370,9 +370,13 @@ function usersnap_input_tool2() {
 
 
 function usersnap_options_validate($input) {
+	if (!isset($input["usersnap-api-requ"])) {
+		$input["usersnap-api-requ"] = false;
+	}
 	$input["message"] = "";
 	$input["error"] = false;
-	if (isset($_POST['us_btn_setup'])) {
+	if (isset($_POST['us_btn_setup']) && ($input["usersnap-api-requ"] !== true)) {
+		$input["usersnap-api-requ"] = true;
 		//setup
 		$email = $input["user-email"];
 		$pwd = $input["user-pwd"];
@@ -427,15 +431,20 @@ function usersnap_options_validate($input) {
 			fclose($fp);
 		}
 		
+		//var_dump($errorMsg);
+		
 		if (!$error) {
 			//no error valid api key
 			$input["api-key"] = $apikey;
+			$input["message"] = "";
+			$input["error"] = false;
 		} else {
 			$input["message"] .= $msg."<br/>";
 			$input["error"] = true;
 		}
 		
 	} else {
+		$input["usersnap-api-requ"] = false;
 		//save
 		$t_high = 0;
 		$t_black = 0;
