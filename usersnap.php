@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 2.2
+Version: 2.4
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '2.2');
+define('USERSNAP_VERSION', '2.4');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 if ( is_admin() ){ // admin actions
@@ -39,8 +39,14 @@ function us_add_js() {
 	if (!isset($options['emailboxph'])) {
 		$options['emailboxph'] = "";
 	}
+	if (!isset($options['emailboxvalue'])) {
+		$options['emailboxvalue'] = "";
+	}
 	if (!isset($options['commentbox'])) {
 		$options['commentbox'] = "true";
+	}
+	if (!isset($options['hide-button'])) {
+		$options['hide-button'] = "false";
 	}
 	if (!isset($options['shortcut'])) {
 		$options['shortcut'] = "false";
@@ -90,6 +96,9 @@ function us_add_js() {
 				if ($options['shortcut'] == "true") {
 				?>shortcut: true,<?php
 				}
+				if ($options['hide-button'] == "true") {
+				?>mode: 'report',<?php
+				}
 				if ($options['commentboxph'] != "") {
 				?>commentBoxPlaceholder: '<?php echo $options['commentboxph']; ?>',<?php
 				}
@@ -122,9 +131,10 @@ function us_register_settings() {
 	register_setting( 'usersnap_options', 'usersnap_options', 'usersnap_options_validate');
 	add_settings_section('usersnap_main', 'Main Settings', 'usersnap_section_text', 'usersnap');
 	add_settings_field('us-api-key', 'API-Key', 'usersnap_input_text', 'usersnap', 'usersnap_main');
+	add_settings_field('us-lang', 'Language', 'usersnap_input_lang', 'usersnap', 'usersnap_main');
+	add_settings_field('us-hidebutton', 'Hide Button', 'usersnap_input_hidebutton', 'usersnap', 'usersnap_main');
 	add_settings_field('us-button-valign', 'Button Vertical Alignment', 'usersnap_input_vbutton', 'usersnap', 'usersnap_main');
 	add_settings_field('us-button-halign', 'Button Horizontal Alignment', 'usersnap_input_hbutton', 'usersnap', 'usersnap_main');
-	add_settings_field('us-lang', 'Language', 'usersnap_input_lang', 'usersnap', 'usersnap_main');
 	add_settings_field('us-btntext', 'Button Text', 'usersnap_input_btntext', 'usersnap', 'usersnap_main');
 	add_settings_field('us-shortcut', 'Shortcut', 'usersnap_input_shortcut', 'usersnap', 'usersnap_main');
 
@@ -227,6 +237,12 @@ function usersnap_input_btntext() {
 function usersnap_input_shortcut() {
 	$options = get_option('usersnap_options');
 	?><input type="checkbox" id="us-shortcut" value="true" <?php echo ($options['shortcut']=="true"?"checked":"")?> name="usersnap_options[shortcut]"/>&nbsp;<label for="us-shortcut"><small>If you want that you can open Usersnap with Ctrl+U</small></label>
+		<?php
+}
+
+function usersnap_input_hidebutton() {
+	$options = get_option('usersnap_options');
+	?><input type="checkbox" id="us-hide-button" value="true" <?php echo ($options['hide-button']=="true"?"checked":"")?> name="usersnap_options[hide-button]"/>&nbsp;<label for="us-hide-button"></label>
 		<?php
 }
 
@@ -564,17 +580,6 @@ function us_option_page() {
 	?>
 	<form method="post" action="options.php" id="us-settings-form">
 	<?php settings_fields( 'usersnap_options' ); ?>
-	<!--
-	<table class="form-table">
-		<tr>
-			<th>Tags with CSS classes</th>
-			<td>
-               <input id="ilc_tag_class" name="ilc_tag_class" type="checkbox" value="true" />
-               <label for="ilc_tag_class">Checking this will output each post tag with a specific CSS class based on its slug.</label>
-            </td>
-		</tr>
-	</table>
-	-->
 	<?php
 	switch($currenttab) {
 		case 'newusersnap':
@@ -606,6 +611,29 @@ function us_option_page() {
 			<p class="submit">
 				<input type="submit" name="us_btn_save" class="button-primary" value="<?php _e('Save Changes') ?>" />
 			</p>
+			<script type="text/javascript">
+			function _usersnapCheckHideButton(elm) {
+				var check = jQuery(elm);
+				var valignBox = check.parents('tr').next();
+				var halignBox = valignBox.next();
+				var buttonText = halignBox.next();
+				if (check.is(':checked')) {
+					valignBox.hide();
+					halignBox.hide();
+					buttonText.hide();
+				} else {
+					valignBox.show();
+					halignBox.show();
+					buttonText.show();
+				}
+			};
+			jQuery('#us-hide-button').change(function() {
+				_usersnapCheckHideButton(this);
+			});
+			jQuery(function() {
+				_usersnapCheckHideButton(jQuery('#us-hide-button')[0]);
+			});
+			</script>
 			<?php
 			break; 
 	}
