@@ -4,7 +4,7 @@ Donate link: http://usersnap.com/
 Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 3.4
+Stable tag: 3.5
 
 Improve your Wordpress website with screenshots, bug reports and visual feedback from Usersnap.
 Usersnap helps you to get visual feedback from your users easily.
@@ -91,6 +91,9 @@ For further questions please refer to our <a href="https://usersnap.com/help/tro
 
 
 == Changelog ==
+
+= 3.5 =
+* version hotfixes
 
 = 3.4 =
 * updated documentation
