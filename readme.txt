@@ -1,7 +1,7 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget
+Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget, bugtracking, issue tracking, project management, project tracking, bug tracker, development, testing, browser testing, website testing, wp plugin, acceptance test, acceptance testing, user testing, quality assurance, website widget, feedback widget, customer support, customer widget, survey form, screenshot widget, browser screenshot widget, usersnap, bug reporter, qa, 
 Requires at least: 3.0
 Tested up to: 4.0
 Stable tag: 3.5
