@@ -3,18 +3,19 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 3.6
+Version: 3.7
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '3.6');
+define('USERSNAP_VERSION', '3.7');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
 if ( is_admin() ){ // admin actions
   add_action( 'admin_init', 'us_register_settings' );
   add_action( 'admin_menu', 'us_plugin_menu' );
+  add_action( 'admin_head', 'us_add_js_admin');
 } else {
 	add_action('wp_head', 'us_add_js');
 }
@@ -68,6 +69,28 @@ function us_add_js() {
 	}
 } 
 
+function us_add_js_admin() {
+	$options = get_option('usersnap_options');
+	//check if we should display usersnap
+	if (isset($options['api-key']) && 
+	(strlen($options['api-key'])>0) && 
+	isset($options['visible-for-backend']) && 
+	($options['visible-for-backend']=='backend')) {
+		?>
+		<script type="text/javascript" data-cfasync="false">
+			(function() {
+			    var s = document.createElement('script');
+			    s.type = 'text/javascript';
+			    s.async = true;
+			    s.src = '//api.usersnap.com/load/<?php echo $options['api-key']; ?>.js';
+			    var x = document.getElementsByTagName('head')[0];
+			    x.appendChild(s);
+			})();
+		</script>
+		<?php
+	}
+} 
+
 function us_plugin_menu() {
 	$page = add_menu_page('Usersnap Settings', 'Usersnap', 'administrator', __FILE__, 'us_option_page', plugins_url('/usersnap_16x16.png', __FILE__));
 
@@ -82,9 +105,11 @@ function us_register_settings() {
 	register_setting( 'usersnap_options', 'usersnap_options', 'usersnap_options_validate');
 	add_settings_section('usersnap_main', 'Main Settings', 'usersnap_section_text', 'usersnap');
 	add_settings_field('us-api-key', 'Enter your Usersnap API key', 'usersnap_input_text', 'usersnap', 'usersnap_main');
+	add_settings_section('usersnap_keyinfo', '', 'usersnap_section_keyinfo', 'usersnap');
 	
 	//page usersnap_pg_new
 	add_settings_section('usersnap_new', 'Create your Usersnap account', 'usersnap_section_new', 'usersnap_pg_new');
+	add_settings_field('us-user-name', 'Your name', 'usersnap_input_user_name', 'usersnap_pg_new', 'usersnap_new');
 	add_settings_field('us-user-email', 'Your email', 'usersnap_input_user_email', 'usersnap_pg_new', 'usersnap_new');
 	add_settings_field('us-user-url', 'Blog URL', 'usersnap_input_user_url', 'usersnap_pg_new', 'usersnap_new');
 	add_settings_field('us-user-pwd', 'Choose a password', 'usersnap_input_user_pwd', 'usersnap_pg_new', 'usersnap_new');
@@ -96,7 +121,10 @@ function us_register_settings() {
 }
 
 //user - section
-
+function usersnap_input_user_name() {
+	$options = get_option('usersnap_options');
+	?><input id="us-user-name" style="width:250px;" name="usersnap_options[user-name]" size="40" type="text" value="<?php echo $options['user-name']; ?>" /><?php
+}
 function usersnap_input_user_email() {
 	$options = get_option('usersnap_options');
 	if (!isset($options['user-email']) || $options['user-email']=="") {
@@ -129,7 +157,7 @@ function usersnap_section_text() {
 	<table class="form-table">
 		<tr>
 			<td>
-               <div class="us-box">Manage and configure the button theme and settings on your <a href="https://usersnap.com/apikeys" target="_blank">Usersnap site configuration</a>.</div>  
+               <div class="us-box">Manage and configure the button theme and settings on your <a href="https://usersnap.com/a/" target="_blank">Usersnap site configuration</a>.</div>  
             </td>
 		</tr>
 	</table>
@@ -160,6 +188,21 @@ function usersnap_input_text() {
 	}
 }
 
+function usersnap_section_keyinfo() {
+	?>
+	<table class="form-table">
+		<tr>
+			<td>
+<p>If you got the error message "Referer not valid for this API-key". Please visit your<br/>
+		<a href="https://usersnap.com/a/" target="_blank">Account</a> and add the blog URL to your project settings.</p>
+            </td>
+		</tr>
+	</table>
+	<?php
+}
+		
+
+
 function usersnap_options_validate($input) {
 	if (!isset($input["usersnap-api-requ"])) {
 		$input["usersnap-api-requ"] = false;
@@ -172,6 +215,7 @@ function usersnap_options_validate($input) {
 		$email = $input["user-email"];
 		$pwd = $input["user-pwd"];
 		$url = $input["user-url"];
+		$name = $input["user-name"];
 		$data = http_build_query( 
 			array('email' => $email,
               'url' => $url,
@@ -180,6 +224,7 @@ function usersnap_options_validate($input) {
               'gat' => 'wpplugin',
 		      'tos' => "true",
               'securetoken' => "usersnap",
+	      'name' => $name,
               'package' => 'Pro',
               'payment' => "oneyear")
 		);
@@ -313,6 +358,15 @@ function us_create_visibility_form() {
 		</table>
 		  </td>
 		</tr>
+		<tr>
+		<th colspan="2">
+               Enable Usersnap for Administration Backend:
+		</th>
+		</tr>
+		<tr>
+		  <td width="20"><input type="checkbox" <?php echo ($options['visible-for-backend']=="backend"?"checked":"")?> name="usersnap_options[visible-for-backend]" value="backend" id="us-visible-for-backend"/></td>
+		  <td><label for="us-visible-for-backend">Visible for Administration Backend</label></td>
+		</tr>
 	</table>
 	<script type="text/javascript">
 	jQuery(function() {
@@ -394,8 +448,20 @@ function us_option_page() {
 			</p>
 			<script type="text/javascript">
 			jQuery('#us-settings-form').submit(function(form) {
+				if ((jQuery('#us-user-name').val()==='')) {
+					alert('<?php _e('Please specify a name!') ?>');
+					jQuery('#us-user-name').focus();
+					return false;
+				}
+				var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				if ((jQuery('#us-user-email').val()==='') || !re.test(jQuery('#us-user-email').val())) {
+					alert('<?php _e('Please enter a valid email address!') ?>');
+					jQuery('#us-user-email').focus();
+					return false;
+				}
 				if ((jQuery('#us-user-pwd').val()==='') || (jQuery('#us-user-pwd').val() !== jQuery('#us-user-pwd2').val())) {
 					alert('<?php _e('Your passwords are empty or not equal!') ?>');
+					jQuery('#us-user-pwd').focus();
 					return false;
 				}
 				jQuery('#us-btn-setup').attr("disabled", true).val("<?php _e('Please wait...') ?>");
