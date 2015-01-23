@@ -1,32 +1,88 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget
+Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget, bugtracking, issue tracking, project management, project tracking, bug tracker, development, testing, browser testing, website testing, wp plugin, acceptance test, acceptance testing, user testing, quality assurance, website widget, feedback widget, customer support, customer widget, survey form, screenshot widget, browser screenshot widget, usersnap, bug reporter, qa, 
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 3.3
+Stable tag: 3.8
 
-Get screenshots directly form your readers, customers and users. Usersnap helps you to get visual feedback easily.
+Improve your Wordpress website with screenshots, bug reports and visual feedback from Usersnap.
+Usersnap helps you to get visual feedback from your users easily.
 
 == Description ==
 
-Usersnap helps you to get feedback on your sites. You can create annotated screenshots without installing anything. A small snippet of code on the website creates a feedback button. Your users may highlight, blackout and use sticky notes to give visual feedback which is then sent to you!
-Usersnap is like the Google+ Feedback tool for your sites.
+<a href="https://usersnap.com/wordpress?gat=wordpress" target="_blank">Usersnap</a>  is the #1 screenshot- and bug tracking tool for Wordpress. Get browser screenshots and visual bug reports with additional browser information directly delivered to your pivotal tracker projects. Annotate and send browser screenshots and bug reports to Usersnap or your excisting bug tracking and project management tools.
+
+<b>Get understandable bug reports and visual feedback from your customers without installing anything! Never ask for a browser screenshot again.</b>
+
+Get screenshots from the visual bug tracker Usersnap.
+Usersnap creates screenshots of the current browser content. It helps you to communicate effectively about issues and share feedback between developers, customers and everyone involved in a web project.
+
+With point and click issue reporting, tracking bugs was never easier. Screenshots, the used browser version and a lot of additional information help you to solve every web issue faster. No endless bug reporting forms for your users. A small snippet of code on the website creates a feedback button. Your users may highlight, blackout and use sticky notes to give visual feedback which is then sent to you!
+
+### Features
+- <b>in-browser screenshots:</b> you’ll get a screenshot of what your users sees. No plugins required. Execute cross browser tests and see browser specific issues immediately.
+- <b>Collaborate & Communicate:</b> invite your colleagues into Usersnap and discuss screens and find solutions together.
+- <b>JavaScript error logging:</b> get visual bug reports with advanced client-side JavaScript error recording.
+- <b>seamless integrations:</b> Already using a project management or bug tracking tool? No worries - we’ll add value to your tool.
+
+### Support
+We at Usersnap are always here to help. Contact us on <a href="https://twitter.com/usersnap" target="_blank">twitter.</a> or get in touch with us via <a href="mailto:help@usersnap.com">help@usersnap.com</a>
+
+### Use Usersnap for free!
+Use Usersnap for free and sign up at <a href="https://usersnap.com/wordpress?gat=wordpress#signup" target="_blank">usersnap.com!</a>
+
 
 == Installation ==
+The Installation of the Usersnap plugin is stragit forward. Just follow the following steps:
 
 1. Upload the plugin files to the `/wp-content/plugins/usersnap` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Get your free API key: http://www.usersnap.com
-1. Configure the plugin (accessible via the admin menu)
-1. Now you will have a feedback button on your wordpress page
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Get your free API key: http://www.usersnap.com
+4. Configure the plugin (accessible via the admin menu)
+5. Now you will have a feedback button on your wordpress page
 
 == Frequently Asked Questions ==
 
-= Where do I get a Usersnap API key? =
+= Does the Usersnap widget slow down my site? =
+The Usersnap snippet is loaded asynchronously (like Google Analytics) - It does not impact page loading and rendering times. Additionally, we are using a strong CDN to ensure the best user experience.
 
+= Which browsers are supported? =
+We are supporting all major browsers, both desktop and mobile.
+
+= Does Usersnap work in local development environments? =
+In order to use Usersnap with a local development machine (or any other on premise machine), we recommend a forwarding service like PageKite. Another option is to use <a href="https://usersnap.com/docs/dashboard/browser-extensions" target="_blank">our browser extensions</a> they work in a local environment, too.
+
+= What is the maximum supported screen resolution? =
+sersnap supports screen resolutions up to 4K high definition, which results in 3840x2160 pixels for Microsoft Windows, Linux and Mac OS X.
+
+If the screen size exceeds the corresponding maximum screen resolution, your image will be cropped. If you need larger screens for your web project, please contact us, we are happy to find a custom solution for you.
+
+= Do you support Adobe Flash? =
+Usersnap supports embedded Flash on your pages. However, it's currently not possible to capture the state of those Flash objects itself (e.g. video position, ...).
+
+= Where do I get a Usersnap API key? =
 Either directly in your wordpress plugin or go to http://usersnap.com and sign up! 
 You can create and manage your API keys for your site after you've logged in.
+
+= Can I customize the Usersnap widget? =
+Yes, depending on your chosen Usersnap plan the widget can be customized to your needs.
+Starting from the Team package you can choose from a variety of themes. Our enterprise plans allow you to customize almost everything - white labelling and copy change included.
+
+= What happens if I need more projects? =
+You can upgrade everytime to get more projects. Upgrades are pro-rated in your current payment period.
+
+= Do you offer discounts? =
+Yes. We offer discounts for startups. Get in touch and tell us your story!
+
+= What payment methods do you accept? =
+We accept, VISA, MasterCard and AMEX. You don't need a credit card to sign up.
+
+= What is your refund policy? =
+We offer a free 15 day trial, so take your time to find out if the product fits to your requirements. You can cancel your subscription any time but we do not offer partial refunds for the remaining subscription.
+
+For further questions please refer to our <a href="https://usersnap.com/help/troubleshooting" target="_blank">help center</a> or get in in touch with us via help@usersnap.com
+
 
 == Screenshots ==
 
@@ -35,6 +91,21 @@ You can create and manage your API keys for your site after you've logged in.
 
 
 == Changelog ==
+
+= 3.8 =
+* Updated UI, moved Plugin settings to general settings.
+
+= 3.7 =
+* You can add the Usersnap widget now to your backend administration too.
+
+= 3.6 =
+* tags updated
+
+= 3.5 =
+* version hotfixes
+
+= 3.4 =
+* updated documentation
 
 = 3.3 =
 * tested for new wordpress 4.0 and added icons
@@ -110,4 +181,3 @@ You can create and manage your API keys for your site after you've logged in.
 
 = 0.5 =
 * First version.
-
