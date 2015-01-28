@@ -1,17 +1,17 @@
 === Usersnap ===
 Contributors: usersnap
 Donate link: http://usersnap.com/
-Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget, bugtracking, issue tracking, project management, project tracking, bug tracker, development, testing, browser testing, website testing, wp plugin, acceptance test, acceptance testing, user testing, quality assurance, website widget, feedback widget, customer support, customer widget, survey form, screenshot widget, browser screenshot widget, usersnap, bug reporter, qa, 
+Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget, bugtracking, issue tracking, project management, project tracking, bug tracker, development, testing, browser testing, website testing, wp plugin, acceptance test, acceptance testing, user testing, quality assurance, website widget, feedback widget, customer support, customer widget, survey form, screenshot widget, browser screenshot widget, usersnap, bug reporter, qa, google, page, trello, JIRA, asana, basecamp, admin, administration, chat, slack, hipchat, hall, contact, form, dashboard, ecommerce, edit, content, css button, button, plugins, shortcode, fogbugz, redmine, github, desk, evernote, intercom, kanbanize, kanban, pivotal tracker, tracker, trac, bug tracker, bugs, feedback forms, notifications, notification
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 3.8
+Stable tag: 3.9
 
 Improve your Wordpress website with screenshots, bug reports and visual feedback from Usersnap.
 Usersnap helps you to get visual feedback from your users easily.
 
 == Description ==
 
-<a href="https://usersnap.com/wordpress?gat=wordpress" target="_blank">Usersnap</a>  is the #1 screenshot- and bug tracking tool for Wordpress. Get browser screenshots and visual bug reports with additional browser information directly delivered to your pivotal tracker projects. Annotate and send browser screenshots and bug reports to Usersnap or your excisting bug tracking and project management tools.
+<a href="https://usersnap.com/wordpress?gat=wordpress" target="_blank">Usersnap</a>  is the #1 screenshot- and bug tracking tool for Wordpress. Get browser screenshots and visual bug reports with additional browser information directly delivered to your dashboard. Annotate and send browser screenshots and bug reports to Usersnap or your excisting bug tracking and project management tools.
 
 <b>Get understandable bug reports and visual feedback from your customers without installing anything! Never ask for a browser screenshot again.</b>
 
@@ -25,6 +25,35 @@ With point and click issue reporting, tracking bugs was never easier. Screenshot
 - <b>Collaborate & Communicate:</b> invite your colleagues into Usersnap and discuss screens and find solutions together.
 - <b>JavaScript error logging:</b> get visual bug reports with advanced client-side JavaScript error recording.
 - <b>seamless integrations:</b> Already using a project management or bug tracking tool? No worries - we’ll add value to your tool.
+
+### Connect existing tool
+Usersnap integrates with <a href="https://usersnap.com/connect">every leading project management and bug tracking tool.</a> Easily connect Usersnap with your exisiting tool. We integrate with:
+- JIRA
+- Basecamp
+- Asana
+- Pivotal Tracker
+- Trello
+- Github
+- Zendesk
+- Redmine
+- Axosoft
+- trac
+- Bitbucket
+- Desk
+- Evernote
+- FogBugz
+- Countersoft
+- Intercom
+- Kanbanize
+- Teamwork.com
+- Microsoft Team Foundation Server
+
+### Connect Chat tool with Usersnap
+Modern team communication tools allowing the whole team to keep track on what's going on your project, why not integrating Usersnap to complete the package?
+Usersnap allows you to connect your chat messenger with the bug tracker of Usersnap. At the moment you can connect Usersnap with:
+- Slack
+- Hipchat
+- Hall
 
 ### Support
 We at Usersnap are always here to help. Contact us on <a href="https://twitter.com/usersnap" target="_blank">twitter.</a> or get in touch with us via <a href="mailto:help@usersnap.com">help@usersnap.com</a>
@@ -88,9 +117,14 @@ For further questions please refer to our <a href="https://usersnap.com/help/tro
 
 1. This screenshot shows the admin page of the Usersnap plugin.
 2. The initial setup page where you can create an api key!
-
+3. See the Usersnap widget in action on your website!
+4. Usersnap makes team collaboration easy.
+5. Get screenshots and bug reports from your users & clients with additional meta information (such as browser version, screen size, installed plugins,...)
 
 == Changelog ==
+
+= 3.9 =
+* fixed default options; smaller UI fixes
 
 = 3.8 =
 * Updated UI, moved Plugin settings to general settings.

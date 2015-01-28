@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 3.8
+Version: 3.9
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '3.8');
+define('USERSNAP_VERSION', '3.9');
 define('USERSNAP_POINTER_VERSION', '0_1');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
@@ -173,7 +173,7 @@ function usersnap_input_text() {
 	?>
 	<input id="us-api-key" style="width:300px;" name="usersnap_options[api-key]" size="40" type="text" value="<?php echo $key; ?>" /><?php
 	if (strlen($key) > 0) {
-		?>&nbsp;<a href="https://usersnap.com/configurator?key=<?php echo $key; ?>" target="_blank" class="button">configure Widget</a>
+		?>&nbsp;<a href="https://usersnap.com/configurator?key=<?php echo $key; ?>" target="_blank" class="button">Configure Widget</a>
 		<p><i>If you got the error message "Referer not valid for this API-key". Please visit your<br/>
 			<a href="https://usersnap.com/a/" target="_blank">Account</a> and add the blog URL to your project settings.</i></p><?php
 	}
@@ -187,6 +187,10 @@ function usersnap_options_validate($input) {
 	}
 	$input["message"] = "";
 	$input["error"] = false;
+	if (!isset($input['visible-for-backend'])) {
+		$input['visible-for-backend']="no";
+	}
+
 	if (isset($_POST['us_setup']) && ($input["usersnap-api-requ"] !== true)) {
 		$input["usersnap-api-requ"] = true;
 		//setup
@@ -287,6 +291,9 @@ function us_create_visibility_form() {
 	if (!isset($options['visible-for-roles'])) {
 		$options['visible-for-roles']=array();
 	}
+	if (!isset($options['visible-for-backend'])) {
+		$options['visible-for-backend']="backend";
+	}
 	?>
 	<table class="form-table">
 		<tr>
@@ -347,7 +354,7 @@ function us_create_visibility_form() {
 				
 				<p>
 					<input type="checkbox" <?php echo ($options['visible-for-backend']=="backend"?"checked":"")?> name="usersnap_options[visible-for-backend]" value="backend" id="us-visible-for-backend"/>
-					<label for="us-visible-for-backend">Visible for Administration Backend</label>
+					<label for="us-visible-for-backend">Visible in Administration Backend</label>
 				</p>
 			</td>
 		</tr>
