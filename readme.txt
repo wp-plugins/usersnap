@@ -4,7 +4,7 @@ Donate link: http://usersnap.com/
 Tags: feedback, visual feedback, bug tracking, screenshot, image, images, plugin, bug, bugs, typo, screenshots, widget, bugtracking, issue tracking, project management, project tracking, bug tracker, development, testing, browser testing, website testing, wp plugin, acceptance test, acceptance testing, user testing, quality assurance, website widget, feedback widget, customer support, customer widget, survey form, screenshot widget, browser screenshot widget, usersnap, bug reporter, qa, google, page, trello, JIRA, asana, basecamp, admin, administration, chat, slack, hipchat, hall, contact, form, dashboard, ecommerce, edit, content, css button, button, plugins, shortcode, fogbugz, redmine, github, desk, evernote, intercom, kanbanize, kanban, pivotal tracker, tracker, trac, bug tracker, bugs, feedback forms, notifications, notification
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 3.9
+Stable tag: 3.10
 
 Improve your Wordpress website with screenshots, bug reports and visual feedback from Usersnap.
 Usersnap helps you to get visual feedback from your users easily.
@@ -20,40 +20,44 @@ Usersnap creates screenshots of the current browser content. It helps you to com
 
 With point and click issue reporting, tracking bugs was never easier. Screenshots, the used browser version and a lot of additional information help you to solve every web issue faster. No endless bug reporting forms for your users. A small snippet of code on the website creates a feedback button. Your users may highlight, blackout and use sticky notes to give visual feedback which is then sent to you!
 
+[youtube https://www.youtube.com/watch?v=FteeSqFp0RU]
+
 ### Features
-- <b>in-browser screenshots:</b> you’ll get a screenshot of what your users sees. No plugins required. Execute cross browser tests and see browser specific issues immediately.
-- <b>Collaborate & Communicate:</b> invite your colleagues into Usersnap and discuss screens and find solutions together.
-- <b>JavaScript error logging:</b> get visual bug reports with advanced client-side JavaScript error recording.
-- <b>seamless integrations:</b> Already using a project management or bug tracking tool? No worries - we’ll add value to your tool.
+* <b>in-browser screenshots:</b> you’ll get a screenshot of what your users sees. No plugins required. Execute cross browser tests and see browser specific issues immediately.
+* <b>Collaborate & Communicate:</b> invite your colleagues into Usersnap and discuss screens and find solutions together.
+* <b>JavaScript error logging:</b> get visual bug reports with advanced client-side JavaScript error recording.
+* <b>seamless integrations:</b> Already using a project management or bug tracking tool? No worries - we’ll add value to your tool.
 
 ### Connect existing tool
 Usersnap integrates with <a href="https://usersnap.com/connect">every leading project management and bug tracking tool.</a> Easily connect Usersnap with your exisiting tool. We integrate with:
-- JIRA
-- Basecamp
-- Asana
-- Pivotal Tracker
-- Trello
-- Github
-- Zendesk
-- Redmine
-- Axosoft
-- trac
-- Bitbucket
-- Desk
-- Evernote
-- FogBugz
-- Countersoft
-- Intercom
-- Kanbanize
-- Teamwork.com
-- Microsoft Team Foundation Server
+
+* JIRA
+* Basecamp
+* Asana
+* Pivotal Tracker
+* Trello
+* Github
+* Zendesk
+* Redmine
+* Axosoft
+* trac
+* Bitbucket
+* Desk
+* Evernote
+* FogBugz
+* Countersoft
+* Intercom
+* Kanbanize
+* Teamwork.com
+* Microsoft Team Foundation Server
 
 ### Connect Chat tool with Usersnap
 Modern team communication tools allowing the whole team to keep track on what's going on your project, why not integrating Usersnap to complete the package?
 Usersnap allows you to connect your chat messenger with the bug tracker of Usersnap. At the moment you can connect Usersnap with:
-- Slack
-- Hipchat
-- Hall
+
+* Slack
+* Hipchat
+* Hall
 
 ### Support
 We at Usersnap are always here to help. Contact us on <a href="https://twitter.com/usersnap" target="_blank">twitter.</a> or get in touch with us via <a href="mailto:help@usersnap.com">help@usersnap.com</a>
@@ -122,6 +126,9 @@ For further questions please refer to our <a href="https://usersnap.com/help/tro
 5. Get screenshots and bug reports from your users & clients with additional meta information (such as browser version, screen size, installed plugins,...)
 
 == Changelog ==
+
+= 3.10 =
+* minur UI fixes
 
 = 3.9 =
 * fixed default options; smaller UI fixes
