@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 3.11
+Version: 3.12
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '3.11');
+define('USERSNAP_VERSION', '3.12');
 define('USERSNAP_POINTER_VERSION', '0_1');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
