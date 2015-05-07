@@ -2,14 +2,14 @@
 /*
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
-Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 3.16
+Description: Usersnap helps website owners to get feedback in form of screenshots from their customers, readers or users.
+Version: 3.2
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '3.16');
+define('USERSNAP_VERSION', '3.2');
 define('USERSNAP_POINTER_VERSION', '0_1');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
@@ -60,6 +60,14 @@ function us_add_js() {
 	if ($dispUS) {
 		?>
 		<script type="text/javascript" data-cfasync="false">
+		<?php
+			if ( is_user_logged_in() ) {
+				$userObj = get_userdata(get_current_user_id());
+				?>
+				window['_usersnapconfig'] = {emailBoxValue: '<?php echo $userObj->user_email; ?>'};
+				<?php
+			}
+		?>
 			(function() {
 			    var s = document.createElement('script');
 			    s.type = 'text/javascript';
@@ -85,6 +93,14 @@ function us_add_js_admin() {
 	($options['visible-for-backend']=='backend')) {
 		?>
 		<script type="text/javascript" data-cfasync="false">
+		<?php
+			if ( is_user_logged_in() ) {
+				$userObj = get_userdata(get_current_user_id());
+				?>
+				window['_usersnapconfig'] = {emailBoxValue: '<?php echo $userObj->user_email; ?>'};
+				<?php
+			}
+		?>
 			(function() {
 			    var s = document.createElement('script');
 			    s.type = 'text/javascript';
