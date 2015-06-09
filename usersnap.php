@@ -3,13 +3,13 @@
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
 Description: Usersnap helps website owners to get feedback in form of screenshots from their customers, readers or users.
-Version: 4.1
+Version: 4.2
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '4.1');
+define('USERSNAP_VERSION', '4.2');
 define('USERSNAP_POINTER_VERSION', '0_1');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
@@ -149,6 +149,9 @@ function us_register_settings() {
 //user - section
 function usersnap_input_user_name() {
 	$options = get_option('usersnap_options');
+	if (!isset($options['user-name'])) {
+		$options['user-name'] = "";
+	}
 	?><input id="us-user-name" style="width:250px;" name="usersnap_options[user-name]" size="40" type="text" value="<?php echo $options['user-name']; ?>" /><?php
 }
 function usersnap_input_user_email() {
