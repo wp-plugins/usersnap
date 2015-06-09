@@ -2,14 +2,14 @@
 /*
 Plugin Name: Usersnap
 Plugin URI: http://www.usersnap.com
-Description: Usersnap helps website owners to get feedback in form of screeenshots from their customers, readers or users.
-Version: 3.11
+Description: Usersnap helps website owners to get feedback in form of screenshots from their customers, readers or users.
+Version: 4.2
 Author: Usersnap
 Author URI: http://usersnap.com
 License: GPL v2
 */
 
-define('USERSNAP_VERSION', '3.11');
+define('USERSNAP_VERSION', '4.2');
 define('USERSNAP_POINTER_VERSION', '0_1');
 define('USERSNAP_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
@@ -21,6 +21,9 @@ if ( is_admin() ){ // admin actions
 	add_action('wp_head', 'us_add_js');
 }
 
+/**
+* add js code to webpage
+**/
 function us_add_js() {
 	$options = get_option('usersnap_options');
 	//check if we should display usersnap
@@ -57,6 +60,14 @@ function us_add_js() {
 	if ($dispUS) {
 		?>
 		<script type="text/javascript" data-cfasync="false">
+		<?php
+			if ( is_user_logged_in() ) {
+				$userObj = get_userdata(get_current_user_id());
+				?>
+				window['_usersnapconfig'] = {emailBoxValue: '<?php echo $userObj->user_email; ?>'};
+				<?php
+			}
+		?>
 			(function() {
 			    var s = document.createElement('script');
 			    s.type = 'text/javascript';
@@ -70,6 +81,9 @@ function us_add_js() {
 	}
 } 
 
+/**
+* add js code to admin page
+**/
 function us_add_js_admin() {
 	$options = get_option('usersnap_options');
 	//check if we should display usersnap
@@ -79,6 +93,14 @@ function us_add_js_admin() {
 	($options['visible-for-backend']=='backend')) {
 		?>
 		<script type="text/javascript" data-cfasync="false">
+		<?php
+			if ( is_user_logged_in() ) {
+				$userObj = get_userdata(get_current_user_id());
+				?>
+				window['_usersnapconfig'] = {emailBoxValue: '<?php echo $userObj->user_email; ?>'};
+				<?php
+			}
+		?>
 			(function() {
 			    var s = document.createElement('script');
 			    s.type = 'text/javascript';
@@ -91,6 +113,10 @@ function us_add_js_admin() {
 		<?php
 	}
 } 
+
+/**
+* build settings menu
+**/
 
 function us_plugin_menu() {
 	$page = add_submenu_page('options-general.php', 'Usersnap Settings', 'Usersnap', 'administrator', __FILE__, 'us_option_page');
@@ -123,6 +149,9 @@ function us_register_settings() {
 //user - section
 function usersnap_input_user_name() {
 	$options = get_option('usersnap_options');
+	if (!isset($options['user-name'])) {
+		$options['user-name'] = "";
+	}
 	?><input id="us-user-name" style="width:250px;" name="usersnap_options[user-name]" size="40" type="text" value="<?php echo $options['user-name']; ?>" /><?php
 }
 function usersnap_input_user_email() {
@@ -175,7 +204,7 @@ function usersnap_input_text() {
 	if (strlen($key) > 0) {
 		?>&nbsp;<a href="https://usersnap.com/configurator?key=<?php echo $key; ?>" target="_blank" class="button">Configure Widget</a>
 		<p><i>If you got the error message "Referer not valid for this API-key". Please visit your<br/>
-			<a href="https://usersnap.com/a/" target="_blank">Account</a> and add the blog URL to your project settings.</i></p><?php
+			<a href="https://usersnap.com/a/#/company/p/<?php echo $key; ?>/edit" target="_blank">Account</a> and add the blog URL to your project settings.</i></p><?php
 	}
 }
 		
@@ -207,7 +236,7 @@ function usersnap_options_validate($input) {
 		      'tos' => "true",
               'securetoken' => "usersnap",
 	      'name' => $name,
-              'package' => 'Pro',
+              'package' => 'Company',
               'payment' => "oneyear")
 		);
 		
